@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Classification</title>
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.1/jquery.form.min.js"></script>
+   	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+</head>
+<body>
+	<h1>Colour Classification</h1>
+	<h2>Get a Crayola Colour Name!</h2>
+	<form id="crayola" action="/find_crayola_name" method="post">
+		<label for="hex_value">Hex Value</label>
+		<input type="text" name="hex_value" />
+		<input type="submit" value="Submit">
+	</form>
+	<div id="crayola_result"></div>
+
+	<h2>Determine if any colour is WARM or COOL</h2>
+	<button id="train_button" onclick="train()">Train</button>
+	<div id="accuracy">UNTRAINED</div>
+	<form id="classification" action="/find_temperature" method="post">
+		<label for="hex_value">Hex Value</label>
+		<input type="text" name="hex_value" />
+		<input type="submit" value="Submit">
+	</form>
+	<div id="classification_result"></div>
+	<script type="text/javascript">
+		function train() {
+			$.get("train_temperature", function(data, status) {
+				console.log("Data: " + data + "\nStatus: " + status);
+				$("#accuracy").text("Accuracy: " + data)
+			});
+		}
+	</script>
+</body>
+</html>

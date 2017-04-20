@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+</head>
+<body>
+<h1>Make Me Up</h1>
+<a class="button" href="user_profile">Update the user profile</a>
+<a class="button" href="classification">Classify some colours</a>
+<h2>Current user</h2>
+<div id="user_information">
+Username: {{ user.username }}
+Hair Colour: {{ user.hair_colour }}
+Eye Colour: {{ user.eye_colour }}
+Skin Temperature: {{ user.skin_temperature }}
+Skin Tone: {{ user.skin_tone }}
+</div>
+<h2>Recommendations</h2>
+<button onclick="update_scores()">Update Scores</button>
+<button onclick="reset_likes()">Reset Likes/Dislikes</button>
+<button onclick="reset_wears()">Reset Wears</button>
+<table>
+<tr>
+	<th>Images</th><th>Score</th><th>Popularity</th><th>Eyeshadow</th><th>Lipstick</th><th>Like</th><th>Dislike</th><th>Wear it!</th>
+</tr>
+{% for n in recommendations %}
+<tr>
+	<td><img src='static/images/eyeshadow/{{n.eyeshadow_id}}.png' width="40" height="40"/>
+		<img src='static/images/lipstick/{{ n.lipstick_id}}.png' width="40" height="40"/></td>
+	<td>{{ n.score }}</td><td>{{ n.popularity }}</td><td>{{ n.eyeshadow_comp }} {{ n.eyeshadow_name }}</td>
+	<td>{{ n.lipstick_comp }} {{ n.lipstick_name }} </td>
+	<td><button onclick='like({{ n.eyeshadow_id}}, {{n.lipstick_id }});'>Like ({{ n.likes }})</button></td>
+	<td><button onclick='dislike({{ n.eyeshadow_id}}, {{n.lipstick_id }});'>Dislike ({{ n.dislikes }})</button></td>
+	<td>Worn {{ n.wears }} times<button onclick='wear({{ n.eyeshadow_id}}, {{n.lipstick_id }});'>Wear!</button></td>
+</tr>
+{% endfor %}
+</table>
+
+<script type="text/javascript">
+	function like(e_id, l_id) {
+		$.post("like", {'e_id': e_id, 'l_id': l_id}, function(data, status) {
+			//console.log("Data: " + data + "\nStatus: " + status);
+			window.location.reload();
+		});
+	};
+	function dislike(e_id, l_id) {
+		$.post("dislike", {'e_id': e_id, 'l_id': l_id}, function(data, status) {
+			//console.log("Data: " + data + "\nStatus: " + status);
+			window.location.reload();
+		});
+	};
+	function wear(e_id, l_id) {
+		$.post("wear", {'e_id': e_id, 'l_id': l_id}, function(data, status) {
+			//console.log("Data: " + data + "\nStatus: " + status);
+			window.location.reload();
+		});
+	};
+
+	function reset_likes() {
+		$.get("reset_likes", function(data, status) {
+			console.log("Data: " + data + "\nStatus: " + status);
+			window.location.reload();
+		});
+	};
+
+	function reset_wears() {
+		$.get("reset_wears", function(data, status) {
+			console.log("Data: " + data + "\nStatus: " + status);
+			window.location.reload();
+		});
+	};
+
+	function update_scores() {
+		$.get("update_scores", function(data, status) {
+			console.log("Data: " + data + "\nStatus: " + status);
+			window.location.reload();
+		});
+	};
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+SQLite commands
+
+# Create eyeshadow table
+create table eyeshadow(id integer not null primary key, texture varchar(10), company varchar(30), name varchar(30), style varchar(10), temperature varchar(10), focus_red integer, focus_green integer, focus_blue integer, secondary_red integer, secondary_green integer, secondary_blue integer, likes integer, dislikes integer, score integer, wears integer);
+
+create table tempe(id integer, texture varchar(10), company varchar(30), name varchar(30), style varchar(10), temperature varchar(10), focus_red integer, focus_green integer, focus_blue integer, secondary_red integer, secondary_green integer, secondary_blue integer, likes integer, dislikes integer, score integer, wears integer);
+
+Create lipstick table
+create table lipstick(id integer not null primary key, texture varchar(10), company varchar(30), name varchar(30), intensity varchar(10), colour_family varchar(10), red integer, green integer, blue integer, likes integer, dislikes integer, wear integer, score real);
+
+create table templ(id integer, texture varchar(10), company varchar(30), name varchar(30), intensity varchar(10), colour_family varchar(10), red integer, green integer, blue integer, likes integer, dislikes integer, wear integer, score real);
+
+Import eyeshadows into temp
+.import makeup.csv temp
+insert into eyeshadow(texture, company, name, style, temperature, focus_red, focus_green, focus_blue, secondary_red, secondary_green, secondary_blue) select texture, company, name, style, temperature, focus_red, focus_green, focus_blue, secondary_red, secondary_green, secondary_blue from temp;
+
+# Import lipsticks into temp
+.separator ","
+.import lipstick.csv temp
+insert into lipstick(texture, company, name, intensity, colour_family, red, green, blue) select texture, company, name, intensity, colour_family, red, green, blue from temp;
+
+# Create the scores table
+create table score(eyeshadow_id integer, lipstick_id integer, score real, popularity real, primary key (eyeshadow_id, lipstick_id));
