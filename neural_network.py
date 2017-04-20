@@ -3,6 +3,9 @@ from random import randrange
 import numpy as np
 import csv, math
 
+# Following the tutorial provided by http://www.wildml.com/2015/09/implementing-a-neural-network-from-scratch/
+
+
 def loadData(filename):
 	lines = csv.reader(open(filename, "rb"))
 	y = []

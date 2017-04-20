@@ -1,6 +1,8 @@
 import math
 import json
 
+# Following the tutorial provided by http://gauth.fr/2011/09/get-a-color-name-from-any-rgb-combination/ 
+
 blue_eyes = ['Cool Gray', 'Antique Brass', 'Dark Chocolate', 'Gray', 'Dark Brown', 'Cocoa', 'Apricot', 'Harvest Gold', 'Ash', 'Light Orange', 'Beaver', 'Plum', 'Peach', 'Mauve', 'Blue Violet', 'Violet (Purple)', 'Pink', 'Raspberry', 'Blush', 'Salmon', 'Bubble Gum', 'Fiery Rose', 'Orchid', 'Warm Gray', 'Brown', 'Light Brown', 'Slate', 'Pale Rose', 'Black', 'Sand', 'Copper', 'Taupe', 'Coral Reef', 'White']
 brown_eyes = ['Aqua Green', 'Cerulean', 'Bubble Gum', 'Absolute Zero', 'Apricot', 'Fern', 'Jade Green', 'Green Blue', 'Harvest Gold', 'Fiery Rose', 'Yellow Green', 'Light Blue', 'Lilac', 'Green', 'Magenta', 'Lime Green', 'Granny Smith Apple', 'Olive', 'Plum', 'Sky Blue', 'Mahogany', 'Maroon', 'Mango', 'Blue Bolt', 'Blue', 'Pine Green', 'Mauve', 'Blue Violet', 'Ruby Red', 'Violet (Purple)', 'Pink', 'Raspberry', 'Blush', 'True Blue', 'White', 'Salmon', 'Orchid', 'Brick Red', 'Black', 'Turquoise', 'Sand', 'Coral Reef', 'Teal', 'Cornflower']
 green_eyes = ['Black', 'White', 'Taupe', 'Red Orange', 'Orange', 'Cocoa', 'Harvest Gold', 'Dark Chocolate', 'Plum', 'Mauve', 'Blue Violet', 'Pink', 'Orchid', 'Pale Rose', 'Cantaloupe', 'Tan', 'Brown']
